@@ -40,4 +40,7 @@
 ### Search Bar And filter System
 - can filter with tags
 - has search function might use some math thingies algo
+- use template ref to auto focus that shit
+
+use dollar sign emits
 
