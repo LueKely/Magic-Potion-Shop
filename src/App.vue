@@ -6,8 +6,8 @@
 	const a = ref('joe');
 	const b = ref('mama');
 
-	function heyJude() {
-		console.log(a.value + b.value);
+	function heyJude(e) {
+		console.log(e);
 	}
 </script>
 
