@@ -1,6 +1,6 @@
 <template>
 	<div class="about">
-		<h1>This is an about page</h1>
+		<h1 @click="alertUser">This is an about page</h1>
 		<p>gamer {{ props.joe }}</p>
 		{{ props.mama }}
 	</div>
@@ -11,7 +11,10 @@
 	const props = defineProps({ joe: Number, mama: Number });
 	const emit = defineEmits(['actionCaptured']);
 	const lue = ref(5);
-	emit('actionCaptured', lue.value);
+
+	function alertUser() {
+		emit('actionCaptured', lue.value);
+	}
 </script>
 
 <style>
