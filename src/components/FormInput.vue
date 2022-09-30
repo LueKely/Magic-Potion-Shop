@@ -44,13 +44,15 @@
 		label: '',
 		price: '',
 		tag: '',
-		url: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.J8uktCRVET2arbFcH_PivwHaE6%26pid%3DApi&f=1&ipt=7dbd39003280857e217cc61d39c4a8421303c72ead7bfb45b505841dda7ad045&ipo=images',
+		url: '',
 	});
 
-	const emit = defineEmits(['itemOut']);
+	const emit = defineEmits(['item-out']);
 
 	function sendItem() {
-		emit();
+		console.log('item emetted');
+		console.log(item);
+		emit('item-out', item);
 	}
 </script>
 

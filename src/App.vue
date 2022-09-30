@@ -1,5 +1,8 @@
 <script setup>
 	import FormInput from './components/FormInput.vue';
+	function test(e) {
+		console.log(e.tag);
+	}
 </script>
 
 <template>
@@ -9,7 +12,7 @@
 		Earum animi recusandae corporis? Rem eligendi veritatis cum, officiis hic id
 		quo earum. Minima omnis labore, sint dignissimos sunt quae.
 	</p>
-	<FormInput></FormInput>
+	<FormInput @item-out="test"></FormInput>
 </template>
 
 <style scoped></style>
