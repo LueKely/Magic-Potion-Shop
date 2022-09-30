@@ -1,18 +1,20 @@
 <script setup>
 	import FormInput from './components/FormInput.vue';
-	function test(e) {
-		console.log(e.tag);
+	import InputItems from './components/InputItems.vue';
+	import { ref } from 'vue';
+	function submitToStorage(e) {
+		localStorage.setItem(
+			localStorage.length == 0 ? '1' : (localStorage.length + 1).toString(),
+			JSON.stringify(e)
+		);
+		console.log(localStorage);
 	}
+	const apple = ref(localStorage.getItem('1'));
 </script>
 
 <template>
-	<h1>joe</h1>
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, cupiditate.
-		Earum animi recusandae corporis? Rem eligendi veritatis cum, officiis hic id
-		quo earum. Minima omnis labore, sint dignissimos sunt quae.
-	</p>
-	<FormInput @item-out="test"></FormInput>
+	<FormInput @item-out="submitToStorage"></FormInput>
+	<InputItems :item="apple"></InputItems>
 </template>
 
 <style scoped></style>

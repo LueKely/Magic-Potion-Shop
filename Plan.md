@@ -27,6 +27,7 @@
     - Misc
 
 - after finishing the form it will be saved as an item for an object and send to **Display** to add an item and also store it to the storage
+  ALSO ADD NOTIFICATIONS
 
 ### Display
 
