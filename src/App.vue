@@ -18,11 +18,15 @@
 		);
 		pushArray(e);
 		console.log(localStorage);
+		console.log(itemArray.value);
 	}
 
 	function check() {
-		if (isEmpty) {
+		if (!isEmpty) {
 			pushAll();
+			console.log('not empty!!');
+			console.log(itemArray.value);
+			console.log(localStorage);
 		} else {
 			itemArray.value = [];
 		}
@@ -42,7 +46,15 @@
 <template>
 	<FormInput @item-out="submitToStorage"></FormInput>
 
-	<InputItems v-if="!isEmpty" :item="prop"></InputItems>
+	<!-- wrapper -->
+	<div v-if="!isEmpty">
+		<InputItems
+			v-for="(items, index) in itemArray"
+			:key="items"
+			:item="items"
+			:index="index"
+		></InputItems>
+	</div>
 </template>
 
 <style scoped></style>

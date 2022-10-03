@@ -1,21 +1,21 @@
 <template>
-	<!-- parseItem image -->
-	<img :src="parseItem.url" :alt="parseItem.item" />
-	<!--parseItem tag -->
+	<!-- container -->
 	<div>
-		<p>{{ parseItem.tag }}</p>
+		<!-- prop.item image -->
+		<img :src="prop.item.url" :alt="prop.item.item" />
+		<!--prop.item tag -->
+		<div>
+			<p>{{ prop.item.tag }}</p>
+		</div>
+		<!-- prop.item name -->
+		<h2>{{ prop.item.label }}</h2>
+		<!-- parseItem price -->
+		<h3>
+			{{ prop.item.price }}
+		</h3>
 	</div>
-	<!-- parseItem name -->
-	<h2>{{ parseItem.label }}</h2>
-	<!-- parseItem price -->
-	<h3>
-		{{ parseItem.price }}
-	</h3>
 </template>
 <script setup>
-	import { reactive } from 'vue';
-
-	const prop = defineProps({ item: String });
-
-	const parseItem = reactive(JSON.parse(prop.item));
+	const prop = defineProps({ item: Object, index: Number });
+	console.log(prop.index);
 </script>
