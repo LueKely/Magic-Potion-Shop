@@ -1,11 +1,15 @@
 <script setup>
 	import FormInput from './components/FormInput.vue';
 	import InputItems from './components/InputItems.vue';
-	import { ref, onMounted } from 'vue';
+	import { ref, onMounted, watch } from 'vue';
 
 	const itemArray = ref([]);
 
-	const isEmpty = localStorage.length == 0;
+	const isEmpty = ref(localStorage.length == 0);
+
+	watch(itemArray.value, () => {
+		isEmpty.value = localStorage.length == 0;
+	});
 
 	function pushArray(e) {
 		itemArray.value.push(e);
@@ -22,7 +26,7 @@
 	}
 
 	function check() {
-		if (!isEmpty) {
+		if (!isEmpty.value) {
 			pushAll();
 			console.log('not empty!!');
 			console.log(itemArray.value);
@@ -52,7 +56,7 @@
 	}
 
 	function deleteItem(e) {
-		console.log(itemArray.value[e].tag);
+		console.log(itemArray.value[e]);
 		console.log(localStorage.getItem((e + 1).toString()));
 		localStorage.removeItem((e + 1).toString());
 		itemArray.value.splice(e, 1);
@@ -66,6 +70,8 @@
 	<FormInput @item-out="submitToStorage"></FormInput>
 
 	<!-- wrapper -->
+
+	<div v-show="isEmpty">Empty :(</div>
 
 	<InputItems
 		v-for="(items, index) in itemArray"
