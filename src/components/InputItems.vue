@@ -51,13 +51,12 @@
 
 	function emitEdit() {
 		emit('edited-item', { emitedItem: copyItem.value, index: index.value });
-		alert('your edit has been submitted');
+
 		isEdit.value = false;
 	}
 
 	function deleteItem() {
 		emit('index-item', index.value);
-		alert('item has now been deleted');
 	}
 
 	function makeTrue() {

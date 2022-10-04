@@ -50,7 +50,7 @@
 
 	function sendItem() {
 		console.log('item emetted');
-		console.log(item);
+
 		emit('item-out', item.value.options);
 		item.value.options = { url: '', tag: '', label: '', price: '' };
 	}

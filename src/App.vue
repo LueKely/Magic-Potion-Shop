@@ -7,10 +7,6 @@
 
 	const isEmpty = ref(localStorage.length == 0);
 
-	watch(itemArray.value, () => {
-		isEmpty.value = localStorage.length == 0;
-	});
-
 	function pushArray(e) {
 		itemArray.value.push(e);
 	}
@@ -21,14 +17,12 @@
 			JSON.stringify(e)
 		);
 		pushArray(e);
-		console.log(localStorage);
-		console.log(itemArray.value);
 	}
 
 	function check() {
 		if (!isEmpty.value) {
 			pushAll();
-			console.log('not empty!!');
+			console.log('not empty');
 			console.log(itemArray.value);
 			console.log(localStorage);
 		} else {
@@ -43,10 +37,6 @@
 		}
 	}
 
-	onMounted(() => {
-		check();
-	});
-
 	function editItem(e) {
 		localStorage.setItem(
 			(e.index + 1).toString(),
@@ -56,14 +46,19 @@
 	}
 
 	function deleteItem(e) {
-		console.log(itemArray.value[e]);
-		console.log(localStorage.getItem((e + 1).toString()));
-		localStorage.removeItem((e + 1).toString());
+		console.log('deleting index ' + e);
+		console.log(localStorage.key(e));
+		localStorage.removeItem(localStorage.key(e - 1));
 		itemArray.value.splice(e, 1);
-		console.log(itemArray.value[e]);
-
-		// console.log(itemArray.value);
+		console.table(localStorage);
 	}
+	watch(itemArray.value, () => {
+		console.log('array changed');
+		isEmpty.value = localStorage.length == 0;
+	});
+	onMounted(() => {
+		check();
+	});
 </script>
 
 <template>
@@ -75,7 +70,7 @@
 
 	<InputItems
 		v-for="(items, index) in itemArray"
-		:key="items"
+		:key="items.id"
 		:item="items"
 		:index="index"
 		@edited-item="editItem"
