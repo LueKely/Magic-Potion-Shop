@@ -28,6 +28,7 @@
 			console.log(itemArray.value);
 			console.log(localStorage);
 		} else {
+			console.log('empty');
 			itemArray.value = [];
 		}
 	}
@@ -41,20 +42,39 @@
 	onMounted(() => {
 		check();
 	});
+
+	function editItem(e) {
+		localStorage.setItem(
+			(e.index + 1).toString(),
+			JSON.stringify(e.emitedItem)
+		);
+		itemArray.value.splice(e.index, 1, e.emitedItem);
+	}
+
+	function deleteItem(e) {
+		console.log(itemArray.value[e].tag);
+		console.log(localStorage.getItem((e + 1).toString()));
+		localStorage.removeItem((e + 1).toString());
+		itemArray.value.splice(e, 1);
+		console.log(itemArray.value[e]);
+
+		// console.log(itemArray.value);
+	}
 </script>
 
 <template>
 	<FormInput @item-out="submitToStorage"></FormInput>
 
 	<!-- wrapper -->
-	<div v-if="!isEmpty">
-		<InputItems
-			v-for="(items, index) in itemArray"
-			:key="items"
-			:item="items"
-			:index="index"
-		></InputItems>
-	</div>
+
+	<InputItems
+		v-for="(items, index) in itemArray"
+		:key="items"
+		:item="items"
+		:index="index"
+		@edited-item="editItem"
+		@index-item="deleteItem"
+	></InputItems>
 </template>
 
 <style scoped></style>

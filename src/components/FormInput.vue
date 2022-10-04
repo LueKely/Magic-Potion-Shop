@@ -4,23 +4,27 @@
 	<!-- Label -->
 	<div>
 		<h1>Name</h1>
-		<input type="text" placeholder="Name of Product" v-model="item.label" />
+		<input
+			type="text"
+			placeholder="Name of Product"
+			v-model="item.options.label"
+		/>
 	</div>
 
 	<!-- Input Price -->
 	<div>
 		<h1>Price</h1>
-		<input type="text" placeholder="Input Price" v-model="item.price" />
+		<input type="text" placeholder="Input Price" v-model="item.options.price" />
 	</div>
 	<!-- Item URL Photo -->
 	<div>
 		<h1>Photo Url</h1>
-		<input type="text" placeholder="Input URL" v-model="item.url" />
+		<input type="text" placeholder="Input URL" v-model="item.options.url" />
 	</div>
 	<!-- tags -->
 	<div>
 		<h1>Tag</h1>
-		<select v-model="item.tag">
+		<select v-model="item.options.tag">
 			<option disabled value="">Please select one</option>
 			<option>Dish Washing</option>
 			<option>Laundry</option>
@@ -38,21 +42,17 @@
 </template>
 
 <script setup>
-	import { reactive } from 'vue';
+	import { ref } from 'vue';
 
-	const item = reactive({
-		label: '',
-		price: '',
-		tag: '',
-		url: '',
-	});
+	const item = ref({ options: { url: '', tag: '', label: '', price: '' } });
 
 	const emit = defineEmits(['item-out']);
 
 	function sendItem() {
 		console.log('item emetted');
 		console.log(item);
-		emit('item-out', item);
+		emit('item-out', item.value.options);
+		item.value.options = { url: '', tag: '', label: '', price: '' };
 	}
 </script>
 
