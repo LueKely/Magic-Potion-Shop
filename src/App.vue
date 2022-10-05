@@ -23,8 +23,8 @@
 		if (!isEmpty.value) {
 			pushAll();
 			console.log('not empty');
-			console.log(itemArray.value);
-			console.log(localStorage);
+			console.table(itemArray.value);
+			console.table(localStorage);
 		} else {
 			console.log('empty');
 			itemArray.value = [];
@@ -45,11 +45,19 @@
 		itemArray.value.splice(e.index, 1, e.emitedItem);
 	}
 
+	function rewrite() {
+		for (let index = 0; index < itemArray.value.length; index++) {
+			localStorage.setItem(
+				(index + 1).toString(),
+				JSON.stringify(itemArray.value[index])
+			);
+		}
+	}
+
 	function deleteItem(e) {
-		console.log('deleting index ' + e);
-		console.log(localStorage.key(e));
-		localStorage.removeItem(localStorage.key(e - 1));
 		itemArray.value.splice(e, 1);
+		localStorage.clear();
+		rewrite();
 		console.table(localStorage);
 	}
 	watch(itemArray.value, () => {
@@ -66,7 +74,7 @@
 
 	<!-- wrapper -->
 
-	<div v-show="isEmpty">Empty :(</div>
+	<div v-if="isEmpty">Empty :(</div>
 
 	<InputItems
 		v-for="(items, index) in itemArray"
