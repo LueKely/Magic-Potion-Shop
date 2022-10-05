@@ -2,7 +2,9 @@
 
 ## CURRENT
 
-URGENT
+Making search function
+
+~done~
 tanggaling ung mga alert at log
 ~done~
 lagyan mo ng template ref ung textarea back cancel ng button
