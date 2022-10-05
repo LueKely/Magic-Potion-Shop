@@ -1,9 +1,9 @@
 <script setup>
 	import FormInput from './components/FormInput.vue';
 	import InputItems from './components/InputItems.vue';
-	import { ref, onMounted, watch } from 'vue';
+	import { ref, onMounted } from 'vue';
 
-	const itemArray = ref([]);
+	const itemArray = ref('');
 
 	const isEmpty = ref(localStorage.length == 0);
 
@@ -32,6 +32,7 @@
 	}
 
 	function pushAll() {
+		itemArray.value = [];
 		for (let index = 0; index < localStorage.length; index++) {
 			pushArray(JSON.parse(localStorage.getItem((index + 1).toString())));
 		}
@@ -60,10 +61,7 @@
 		rewrite();
 		console.table(localStorage);
 	}
-	watch(itemArray.value, () => {
-		console.log('array changed');
-		isEmpty.value = localStorage.length == 0;
-	});
+
 	onMounted(() => {
 		check();
 	});
@@ -74,7 +72,7 @@
 
 	<!-- wrapper -->
 
-	<div v-if="isEmpty">Empty :(</div>
+	<div v-if="itemArray.length == 0">Empty :(</div>
 
 	<InputItems
 		v-for="(items, index) in itemArray"
