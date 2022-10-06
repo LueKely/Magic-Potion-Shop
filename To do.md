@@ -2,6 +2,9 @@
 
 ## CURRENT
 
+UI gaming na ata fuck
+
+~done~
 Making search function
 how do i do it though?
 
