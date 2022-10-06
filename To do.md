@@ -3,6 +3,7 @@
 ## CURRENT
 
 Making search function
+how do i do it though?
 
 ~done~
 tanggaling ung mga alert at log

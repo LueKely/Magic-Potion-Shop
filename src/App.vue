@@ -2,8 +2,9 @@
 	import FormInput from './components/FormInput.vue';
 	import InputItems from './components/InputItems.vue';
 	import { ref, onMounted } from 'vue';
+	import FilterItems from './components/FilterItems.vue';
 
-	const itemArray = ref('');
+	const itemArray = ref([]);
 
 	const isEmpty = ref(localStorage.length == 0);
 
@@ -82,6 +83,8 @@
 		@edited-item="editItem"
 		@index-item="deleteItem"
 	></InputItems>
+
+	<FilterItems :items="itemArray"></FilterItems>
 </template>
 
 <style scoped></style>
