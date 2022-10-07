@@ -11,15 +11,20 @@
 			<option>Laundry</option>
 			<option>Misc</option>
 		</select>
+
+		<div>Search result: {{ arrLength }}</div>
+
 		<div v-if="!isNone">
 			<p>{{ userChoice }}</p>
 		</div>
 	</div>
+
 	<div v-if="isEmpty">
 		<h1>Empty :(</h1>
 	</div>
 
 	<div v-else>
+		<!-- <div v-if="arrLength">Search result: {{ filteredArray.value.length }}</div> -->
 		<div v-for="item in filteredArray" :key="item.id">
 			<img :src="item.url" :alt="item.url" />
 
@@ -39,6 +44,7 @@
 <script setup>
 	import { ref, computed, watch } from 'vue';
 	const prop = defineProps({ items: Array });
+
 	const userChoice = ref('');
 	const isEmpty = computed(() => {
 		return prop.items.length == 0;
@@ -47,7 +53,10 @@
 		return userChoice.value == 'None';
 	});
 	const filteredArray = ref([]);
-
+	const arrLength = computed(() => {
+		return filteredArray.value.length;
+	});
+	console.log(arrLength.value);
 	function noFilter() {
 		filteredArray.value = [];
 		prop.items.forEach((item) => {
