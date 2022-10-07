@@ -1,5 +1,7 @@
 # What to do
 
+so here is the thing gawin mo nalang gumamit ng v-show kasi bwal mag pas ng emit at props sa router or rather wala pa akong alam kung papano
+
 - make it use vue router
 - use emit and props done
 
