@@ -27,9 +27,12 @@
 				</select>
 			</div>
 			<textarea v-model="copyItem.label"></textarea>
+			<div v-if="reg.test(copyItem.price)">
+				Invalide Input Please Use Numbers Only
+			</div>
 			<textarea v-model="copyItem.price"></textarea>
 			<div>
-				<button @click="emitEdit">Submit</button
+				<button @click="emitEdit" :disabled="checkForm">Submit</button
 				><button @click="makeFalse">cancel</button>
 			</div>
 		</div>
@@ -42,11 +45,23 @@
 	</div>
 </template>
 <script setup>
-	import { ref } from 'vue';
+	import { ref, computed } from 'vue';
 	const isEdit = ref(false);
 	const prop = defineProps({ item: Object, index: Number });
 	const emit = defineEmits(['edited-item', 'index-item']);
 	const copyItem = ref({ ...prop.item });
+	const reg = ref(/[a-zA-Z]/g);
+
+	const checkForm = computed(() => {
+		return (
+			copyItem.value.url == '' ||
+			copyItem.value.tag == '' ||
+			copyItem.value.label == '' ||
+			copyItem.value.price == '' ||
+			reg.value.test(copyItem.value.price)
+		);
+	});
+
 	const index = ref(prop.index);
 
 	function emitEdit() {
