@@ -5,7 +5,7 @@
 	import FilterItems from '../components/FilterItems.vue';
 
 	const itemArray = ref([]);
-	const userChoice = ref('');
+	const userChoice = ref('create');
 	const isEmpty = ref(localStorage.length == 0);
 
 	function giveChoice(word) {

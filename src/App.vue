@@ -10,6 +10,7 @@
 		<RouterLink to="/">Home</RouterLink>
 		<RouterLink to="/ShitPost">About</RouterLink>
 	</nav>
+
 	<RouterView />
 </template>
 
