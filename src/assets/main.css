@@ -4,11 +4,11 @@
 	/* max-width: 1280px; */
 	margin: 0 auto;
 	padding: 2rem;
-	height: 100vh;
+
 	font-weight: normal;
-	background-image: url('./casual-background-image.webp');
-	background-position: center;
-	background-repeat: no-repeat;
+	background-image: url('./paper-background-image.webp');
+
+	background-repeat: repeat;
 	background-size: cover;
 }
 
