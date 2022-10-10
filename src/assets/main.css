@@ -1,29 +1,40 @@
 @import './base.css';
 
 #app {
-	max-width: 1280px;
+	/* max-width: 1280px; */
 	margin: 0 auto;
 	padding: 2rem;
-
+	height: 100vh;
 	font-weight: normal;
+	background-image: url('./casual-background-image.webp');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1 {
+	font-size: 4rem;
+	font-family: 'MedievalSharp', cursive;
+	color: #2f1812;
+	opacity: 0.95;
+}
+p {
+	color: var(--color-3);
+	font-family: 'Domine', serif;
+	font-weight: bolder;
+	font-size: 1.5rem;
+
+	opacity: 0.8;
 }
 
 a,
 .green {
 	text-decoration: none;
-	color: hsla(160, 100%, 37%, 1);
+
 	transition: 0.4s;
 }
-
-@media (hover: hover) {
-	a:hover {
-		background-color: hsla(160, 100%, 37%, 0.2);
-	}
-}
-
+/* 
 @media (min-width: 1024px) {
 	body {
-		display: flex;
-		place-items: center;
 	}
-}
+} */
