@@ -1,5 +1,8 @@
 # What to do
 
+make preview tab in the form function
+
+done
 find logo
 find color
 
