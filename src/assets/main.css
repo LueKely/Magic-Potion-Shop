@@ -3,13 +3,13 @@
 #app {
 	/* max-width: 1280px; */
 	margin: 0 auto;
-	padding: 2rem;
 
 	font-weight: normal;
-	background-image: url('./paper-background-image.webp');
-
+	height: 100vh;
+	background-position: center;
 	background-repeat: repeat;
-	background-size: cover;
+	background-size: contain;
+	background-image: url('./paper-background-image.webp');
 }
 
 h1 {

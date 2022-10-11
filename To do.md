@@ -2,6 +2,8 @@
 
 ## CURRENT
 
+Add disabled effect button
+
 UI gaming na ata fuck
 
 ~done~
