@@ -2,6 +2,9 @@
 
 ## CURRENT
 
+Turne d that button G R E E N
+
+~done~
 Add disabled effect button
 
 UI gaming na ata fuck

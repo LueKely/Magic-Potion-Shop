@@ -1,72 +1,100 @@
 <template>
 	<div class="form__container">
 		<div class="form__border"></div>
-		<div class="form__item--title"><h1>CREATE</h1></div>
-		<div class="form__item--container">
-			<!-- Label -->
-			<div class="form--item">
-				<h1 class="form--label">Name:</h1>
-				<input
-					class="form__input--text"
-					type="text"
-					placeholder="Name of Product"
-					v-model="item.options.label"
-				/>
-			</div>
-			<!-- Input Price -->
-			<div class="form--item">
-				<h1 class="form--label">Price:</h1>
-				<input
-					class="form__input--text"
-					type="text"
-					placeholder="Input Price"
-					v-model="item.options.price"
-				/>
-				<div class="form--item__warning" v-show="checkReg">
-					<p>Invalid Charaters, Please put numbers only.</p>
+
+		<div class="form">
+			<div class="form__create">
+				<div class="form__item--title"><h1>CREATE</h1></div>
+				<div class="form__item--container">
+					<!-- Label -->
+					<div class="form--item">
+						<h1 class="form--label">Name:</h1>
+						<input
+							class="form__input--text"
+							type="text"
+							placeholder="Name of Product"
+							v-model="item.options.label"
+						/>
+					</div>
+					<!-- Input Price -->
+					<div class="form--item">
+						<h1 class="form--label">Price:</h1>
+						<input
+							class="form__input--text"
+							type="text"
+							placeholder="Input Price"
+							v-model="item.options.price"
+						/>
+						<div class="form--item__warning" v-show="checkReg">
+							<p>Invalid Charaters, Please put numbers only.</p>
+						</div>
+					</div>
+					<!-- Item URL Photo -->
+					<div class="form--item">
+						<h1 class="form--label">Photo Url:</h1>
+						<input
+							class="form__input--text"
+							type="text"
+							placeholder="Input URL"
+							v-model="item.options.url"
+						/>
+					</div>
+					<!-- tags -->
+					<div class="form--item">
+						<h1 class="form--label">Tag</h1>
+						<select class="form--select" v-model="item.options.tag">
+							<option disabled value="">Please select one</option>
+							<option>Dish Washing</option>
+							<option>Laundry</option>
+							<option>Misc</option>
+						</select>
+					</div>
+					<!-- submit button -->
+					<div class="form__button--container">
+						<button
+							class="btn form__button"
+							@click="sendItem"
+							:disabled="checkForm"
+						>
+							Submit
+						</button>
+
+						<span v-show="checkForm" class="btn__overlay"></span>
+					</div>
 				</div>
 			</div>
-			<!-- Item URL Photo -->
-			<div class="form--item">
-				<h1 class="form--label">Photo Url:</h1>
-				<input
-					class="form__input--text"
-					type="text"
-					placeholder="Input URL"
-					v-model="item.options.url"
-				/>
-			</div>
-			<!-- tags -->
-			<div class="form--item">
-				<h1 class="form--label">Tag</h1>
-				<select class="form--select" v-model="item.options.tag">
-					<option disabled value="">Please select one</option>
-					<option>Dish Washing</option>
-					<option>Laundry</option>
-					<option>Misc</option>
-				</select>
-			</div>
-			<!-- submit button -->
-			<div class="form__button--container">
-				<button
-					class="btn form__button"
-					@click="sendItem"
-					:disabled="checkForm"
-				>
-					Submit
-				</button>
 
-				<span v-show="checkForm" class="btn__overlay"></span>
+			<div class="form__preview">
+				<div><h1>Preview</h1></div>
+				<div class="card__preview--container">
+					<div v-if="item.options.url == ''" class="card--image">
+						<p class="card__image--placeholder">Image</p>
+					</div>
+
+					<div
+						v-else
+						class="card--image"
+						:style="{ 'background-image': `url('${item.options.url}')` }"
+					></div>
+
+					<div class="card--border__label">
+						<h1>{{ item.options.label }}</h1>
+					</div>
+					<div class="card__info--container">
+						<div class="card--info tag">
+							<p class="card--p tag">Tag: {{ item.options.tag }}</p>
+						</div>
+
+						<div class="card--info price">
+							<p class="card--p">Price: ₱{{ item.options.price }}</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="form__border"></div>
 	</div>
-
-	<!-- image to be uploaded -->
-	<!-- <div>
-		<img :src="item.url" alt="" srcset="" />
-	</div> -->
 </template>
 
 <script setup>
@@ -99,6 +127,14 @@
 </script>
 
 <style scoped>
+	.form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		padding: 20px;
+	}
+
 	.form__container {
 		height: auto;
 		width: 100vw;
@@ -203,5 +239,76 @@
 	button.btn:disabled + .btn__overlay {
 		transition: background-color 200ms ease-in-out;
 		background-color: #391d15d4;
+	}
+
+	/* card item */
+
+	.card__preview--container {
+		height: 450px;
+		width: 350px;
+
+		background-image: url('../assets/stone-background-image.webp');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+
+		border-radius: 35px;
+		box-shadow: 0px 2px 55px 10px rgba(57, 29, 21, 1);
+	}
+	.card--border__label {
+		width: 100%;
+		height: 50px;
+		background-image: url('../assets/stone-header-brown.webp');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.card--border__label > h1 {
+		font-size: 2.3rem;
+		text-align: center;
+		color: #2f1812;
+	}
+
+	.card--image {
+		width: 100%;
+		height: 50%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 35px 35px 0px 0px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.card__image--placeholder {
+		font-size: 4rem;
+		font-family: 'MedievalSharp', cursive;
+	}
+
+	.card--info {
+		width: 350px;
+		height: 52px;
+
+		padding-inline: 10px;
+		text-align: center;
+	}
+
+	.card--info.tag {
+		text-align: left;
+	}
+
+	.card--info.price {
+		margin-top: 20px;
+	}
+
+	.card--p {
+		color: #24130e;
+		font-size: 1.8rem;
+	}
+	.card--p.tag {
+		font-size: 1.6rem;
 	}
 </style>
