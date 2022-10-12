@@ -4,7 +4,7 @@
 
 		<div class="form">
 			<div class="form__create">
-				<div class="form__item--title"><h1>CREATE</h1></div>
+				<div class="form__item--title"><h1>Create</h1></div>
 				<div class="form__item--container">
 					<!-- Label -->
 					<div class="form--item">
@@ -14,8 +14,13 @@
 							type="text"
 							placeholder="Name of Product"
 							v-model="item.options.label"
+							maxlength="15"
 						/>
+						<div class="label--check">
+							<p>{{ lableLength }}/15</p>
+						</div>
 					</div>
+
 					<!-- Input Price -->
 					<div class="form--item">
 						<h1 class="form--label">Price:</h1>
@@ -41,7 +46,7 @@
 					</div>
 					<!-- tags -->
 					<div class="form--item">
-						<h1 class="form--label">Tag</h1>
+						<h1 class="form--label">Tag:</h1>
 						<select class="form--select" v-model="item.options.tag">
 							<option disabled value="">Please select one</option>
 							<option>Dish Washing</option>
@@ -65,7 +70,7 @@
 			</div>
 
 			<div class="form__preview">
-				<div><h1>Preview</h1></div>
+				<div class="preview--title"><h1>Preview</h1></div>
 				<div class="card__preview--container">
 					<div v-if="item.options.url == ''" class="card--image">
 						<p class="card__image--placeholder">Image</p>
@@ -77,9 +82,13 @@
 						:style="{ 'background-image': `url('${item.options.url}')` }"
 					></div>
 
-					<div class="card--border__label">
+					<div v-if="item.options.label == ''" class="card--border__label">
+						<h1>Product Name</h1>
+					</div>
+					<div v-else class="card--border__label">
 						<h1>{{ item.options.label }}</h1>
 					</div>
+
 					<div class="card__info--container">
 						<div class="card--info tag">
 							<p class="card--p tag">Tag: {{ item.options.tag }}</p>
@@ -113,6 +122,10 @@
 		return reg.value.test(item.value.options.price);
 	});
 
+	const lableLength = computed(() => {
+		return item.value.options.label.length;
+	});
+
 	const reg = ref(/[a-zA-Z]/g);
 	const item = ref({ options: { url: '', tag: '', label: '', price: '' } });
 
@@ -137,7 +150,7 @@
 
 	.form__container {
 		height: auto;
-		width: 100vw;
+		width: auto;
 
 		background-image: url('../assets/casual-background-image.webp');
 		background-position: bottom;
@@ -149,9 +162,24 @@
 		align-items: center;
 		justify-items: center;
 	}
+	.form__create {
+		width: 410px;
+		height: 600px;
+		margin-right: 50px;
+	}
+
+	.form__preview {
+		width: 410px;
+		height: 600px;
+		margin-left: 50px;
+	}
+
+	.form__item--title {
+		text-align: center;
+	}
 	.form__border {
 		height: 50px;
-		width: 100vw;
+		width: 100%;
 
 		background-image: url('../assets/wood-header-straight.webp');
 		background-repeat: no-repeat;
@@ -166,6 +194,7 @@
 		margin: auto;
 	}
 	.form__input--text {
+		width: 400px;
 		background-color: rgba(255, 0, 0, 0);
 
 		border: none;
@@ -175,6 +204,11 @@
 		font-size: 1.3rem;
 		font-weight: bold;
 		color: #391d15d4;
+	}
+
+	.label--check {
+		width: 400px;
+		text-align: end;
 	}
 
 	.form__input--text:focus {
@@ -244,6 +278,7 @@
 	/* card item */
 
 	.card__preview--container {
+		margin: auto;
 		height: 450px;
 		width: 350px;
 
@@ -255,6 +290,12 @@
 		border-radius: 35px;
 		box-shadow: 0px 2px 55px 10px rgba(57, 29, 21, 1);
 	}
+
+	.preview--title {
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
 	.card--border__label {
 		width: 100%;
 		height: 50px;

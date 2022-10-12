@@ -5,11 +5,7 @@
 	margin: 0 auto;
 
 	font-weight: normal;
-	height: 100vh;
-	background-position: center;
-	background-repeat: repeat;
-	background-size: contain;
-	background-image: url('./paper-background-image.webp');
+	height: auto;
 }
 
 h1 {
