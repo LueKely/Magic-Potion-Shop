@@ -259,11 +259,11 @@
 	}
 
 	.btn:active {
-		transition: scale 200ms ease-in-out;
+		transition: scale 100ms ease-in-out;
 		scale: 0.95;
 	}
 	.btn__overlay {
-		transition: background-color 200ms ease-in-out;
+		transition: background-color 100ms ease-in-out;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -341,11 +341,14 @@
 	}
 
 	.card--info.tag {
+		width: 100%;
+		padding-inline-start: 10px;
+		height: 35px;
 		text-align: left;
 	}
 
 	.card--info.price {
-		margin-top: 20px;
+		margin: 10px 0px 10px 0;
 	}
 
 	.card--p {
@@ -353,6 +356,6 @@
 		font-size: 1.8rem;
 	}
 	.card--p.tag {
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 	}
 </style>
