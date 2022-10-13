@@ -3,7 +3,7 @@
 	<div>
 		<div v-if="!isEdit">
 			<!-- prop.item image -->
-			<img :src="prop.item.url" :alt="prop.item.url" />
+			<img :src="prop.item.url" />
 			<!--prop.item tag -->
 			<div>
 				<p>{{ prop.item.tag }}</p>
@@ -16,6 +16,7 @@
 				{{ prop.item.price }}
 			</h3>
 		</div>
+
 		<div v-else>
 			<textarea v-model="copyItem.url"></textarea>
 			<div>

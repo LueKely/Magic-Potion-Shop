@@ -69,6 +69,8 @@
 				</div>
 			</div>
 
+			<!-- preview Card -->
+
 			<div class="form__preview">
 				<div class="preview--title"><h1>Preview</h1></div>
 				<div class="card__preview--container">
@@ -139,7 +141,7 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.form {
 		display: flex;
 		align-items: center;
@@ -194,7 +196,7 @@
 		margin: auto;
 	}
 	.form__input--text {
-		width: 400px;
+		width: 370px;
 		background-color: rgba(255, 0, 0, 0);
 
 		border: none;
@@ -207,7 +209,8 @@
 	}
 
 	.label--check {
-		width: 400px;
+		font-size: 1rem;
+		width: 370px;
 		text-align: end;
 	}
 
