@@ -108,7 +108,7 @@
 
 <style scoped>
 	.card {
-		margin: 20px 10px;
+		margin: 20px auto;
 		height: 450px;
 		width: 350px;
 	}
@@ -280,7 +280,7 @@
 	}
 
 	function makeFalse() {
-		isEdit.value = false;
 		copyItem.value = { ...prop.item };
+		isEdit.value = false;
 	}
 </script>

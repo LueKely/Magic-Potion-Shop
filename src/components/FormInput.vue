@@ -196,6 +196,8 @@
 		margin: auto;
 	}
 	.form__input--text {
+		transition: background-color 150ms ease-in-out;
+
 		width: 370px;
 		background-color: rgba(255, 0, 0, 0);
 
@@ -215,6 +217,7 @@
 	}
 
 	.form__input--text:focus {
+		transition: background-color 150ms ease-in-out;
 		outline: none;
 		background-color: #7d725c5e;
 	}

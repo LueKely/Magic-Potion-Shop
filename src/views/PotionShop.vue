@@ -86,18 +86,25 @@
 		<FormInput @item-out="submitToStorage"></FormInput>
 	</div>
 
-	<!-- wrapper -->
+	<!-- wrapper 1 -->
 	<div v-show="userChoice == 'delete'">
+		<!-- wrapper 2 -->
 		<div v-if="itemArray.length == 0">Empty :(</div>
-		<div v-else>
-			<InputItems
-				v-for="(items, index) in itemArray"
-				:key="items.id"
-				:item="items"
-				:index="index"
-				@edited-item="editItem"
-				@index-item="deleteItem"
-			></InputItems>
+		<!-- wrapper 3 -->
+		<div class="input--item__wrapper" v-else>
+			<div class="form__border brick"></div>
+			<h1>Delete/View</h1>
+			<div class="input--item__container">
+				<InputItems
+					v-for="(items, index) in itemArray"
+					:key="items.id"
+					:item="items"
+					:index="index"
+					@edited-item="editItem"
+					@index-item="deleteItem"
+				></InputItems>
+			</div>
+			<div class="form__border brick"></div>
 		</div>
 	</div>
 
@@ -106,4 +113,26 @@
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+	.form__border.brick {
+		background-image: url('../assets/wood-header-textured.webp');
+	}
+	.input--item__container {
+		padding: 10px 30px 30px 30px;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		width: 90%;
+		height: auto;
+	}
+	.input--item__wrapper {
+		background-image: url('../assets/casual-background-image.webp');
+		width: 100%;
+		height: auto;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+</style>
