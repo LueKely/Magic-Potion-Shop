@@ -291,7 +291,8 @@
 		background-position: center;
 
 		border-radius: 35px;
-		box-shadow: 0px 2px 55px 10px rgba(57, 29, 21, 1);
+
+		box-shadow: -1px 1px 51px 11px rgba(57, 29, 21, 1);
 	}
 
 	.preview--title {
@@ -344,7 +345,7 @@
 		width: 100%;
 		padding-inline-start: 10px;
 		height: 35px;
-		text-align: left;
+		text-align: center;
 	}
 
 	.card--info.price {

@@ -1,23 +1,7 @@
 <template>
 	<!-- container -->
-	<div>
-		<!-- <div v-if="!isEdit"> -->
-		<!-- prop.item image -->
-		<!-- <img :src="prop.item.url" /> -->
-		<!--prop.item tag -->
-		<!-- <div>
-				<p>{{ prop.item.tag }}</p>
-			</div> -->
-
-		<!-- prop.item name -->
-		<!-- <h2>{{ prop.item.label }}</h2> -->
-		<!-- parseItem price -->
-		<!-- <h3>
-				{{ prop.item.price }}
-			</h3>
-		</div> -->
-
-		<div v-if="!isEdit" class="card__preview--container">
+	<div class="card">
+		<div v-if="!isEdit" class="card__preview--container component">
 			<div
 				class="card--image"
 				:style="{ 'background-image': `url('${prop.item.url}')` }"
@@ -54,30 +38,84 @@
 			</div>
 		</div>
 
-		<div v-else>
-			<textarea v-model="copyItem.url"></textarea>
-			<div>
-				<select v-model="copyItem.tag">
-					<option disabled value="">Please select one</option>
-					<option>Dish Washing</option>
-					<option>Laundry</option>
-					<option>Misc</option>
-				</select>
+		<!-- edit component -->
+		<div v-else class="card__preview--container component">
+			<div class="card--image">
+				<div class="form--item edit">
+					<p class="card--p tag">Url:</p>
+
+					<input
+						class="form__input--text edit"
+						type="text"
+						placeholder="Input URL"
+						v-model="copyItem.url"
+					/>
+				</div>
 			</div>
-			<textarea v-model="copyItem.label"></textarea>
-			<div v-if="reg.test(copyItem.price)">
-				Invalide Input Please Use Numbers Only
+
+			<div class="card--border__label edit">
+				<p class="card--p tag">Name:</p>
+				<input
+					class="form__input--text edit label"
+					type="text"
+					placeholder="Name of Product"
+					v-model="copyItem.label"
+					maxlength="15"
+				/>
 			</div>
-			<textarea v-model="copyItem.price"></textarea>
-			<div>
-				<button @click="emitEdit" :disabled="checkForm">Submit</button
-				><button @click="makeFalse">cancel</button>
+
+			<div class="card__info--container">
+				<div class="card--info tag">
+					<p class="card--p tag">Tag:</p>
+					<select class="form--select edit" v-model="copyItem.tag">
+						<option disabled value="">Please select one</option>
+						<option>Dish Washing</option>
+						<option>Laundry</option>
+						<option>Misc</option>
+					</select>
+				</div>
+
+				<div class="card--info price">
+					<p class="card--p price">Price:</p>
+
+					<input
+						class="form__input--text edit"
+						type="text"
+						placeholder="Input price"
+						v-model="copyItem.price"
+					/>
+				</div>
+			</div>
+			<!-- btn edit -->
+			<div class="btn__container">
+				<div>
+					<button class="btn submit" @click="emitEdit" :disabled="checkForm">
+						<div class="btn__overlay submit"></div>
+						Submit
+					</button>
+				</div>
+				<!-- btn cancel -->
+				<div>
+					<button class="btn delete" @click="makeFalse">
+						<div class="btn__overlay delete"></div>
+						<p class="btn__txt">Cancel</p>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped>
+	.card {
+		margin: 20px 10px;
+		height: 450px;
+		width: 350px;
+	}
+
+	.card__preview--container.component {
+		margin: 0px;
+	}
 	.btn__container {
 		display: flex;
 		align-items: center;
@@ -140,6 +178,70 @@
 	.btn__overlay.delete:hover {
 		transition: all 100ms ease-in-out;
 		background-color: #bb6957db;
+	}
+
+	.btn__overlay.delete:hover {
+		transition: all 100ms ease-in-out;
+		background-color: #bb6957db;
+	}
+
+	/* #9B9642 */
+
+	.btn__overlay.submit {
+		transition: all 100ms ease-in-out;
+		background-color: #68652dc9;
+	}
+	.btn__overlay.submit:hover {
+		transition: all 100ms ease-in-out;
+		background-color: #9b9642;
+	}
+	.btn.submit {
+		margin-left: 5px;
+
+		border-radius: 10px;
+		overflow: hidden;
+		position: relative;
+		border-color: #56551f;
+		color: #56551f;
+		width: 90px;
+		height: 30px;
+	}
+
+	.form--item.edit {
+		margin: 0;
+	}
+
+	.form__input--text.edit {
+		height: 26px;
+		width: 200px;
+	}
+
+	.card--info {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.card--info.tag {
+		margin-top: 10px;
+	}
+
+	.card--p.price {
+		color: #24130e;
+		font-size: 1.4rem;
+	}
+	.form--select.edit {
+		height: 35px;
+	}
+	.card--border__label.edit {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.form--item.edit {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
 
