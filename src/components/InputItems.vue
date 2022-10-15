@@ -108,7 +108,7 @@
 
 <style scoped>
 	.card {
-		margin: 20px auto;
+		margin: 20px 20px;
 		height: 450px;
 		width: 350px;
 	}
