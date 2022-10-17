@@ -1,45 +1,90 @@
 <template>
-	<div>
-		<h1>View</h1>
-		<p>Filter</p>
-		<p>uhm please just use control f when looking for the item lol</p>
+	<div class="input--item__wrapper">
+		<div class="form__border brick"></div>
+		<div class="title__margin"><h1>View/Filter</h1></div>
+		<!-- view options -->
 
-		<select v-model="userChoice">
-			<option disabled value="">Please select one</option>
-			<option>None</option>
-			<option>Dish Washing</option>
-			<option>Laundry</option>
-			<option>Misc</option>
-		</select>
+		<div class="filter">
+			<div class="filter__container">
+				<p>Filter: &nbsp;</p>
 
-		<div>Search result: {{ arrLength }}</div>
-
-		<div v-if="!isNone">
-			<p>{{ userChoice }}</p>
-		</div>
-	</div>
-
-	<div v-if="isEmpty">
-		<h1>Empty :(</h1>
-	</div>
-
-	<div v-else>
-		<!-- <div v-if="arrLength">Search result: {{ filteredArray.value.length }}</div> -->
-		<div v-for="item in filteredArray" :key="item.id">
-			<img :src="item.url" :alt="item.url" />
-
-			<div>
-				<p>{{ item.tag }}</p>
+				<select v-model="userChoice" class="form--select">
+					<option disabled value="">Please select one</option>
+					<option>None</option>
+					<option>Dish Washing</option>
+					<option>Laundry</option>
+					<option>Misc</option>
+				</select>
 			</div>
-
-			<h2>{{ item.label }}</h2>
-
-			<h3>
-				{{ item.price }}
-			</h3>
+			<div class="search__result" v-if="!isNone">
+				<p>Search results for {{ userChoice }} : {{ arrLength }}</p>
+			</div>
 		</div>
+
+		<div class="empty__filter" v-if="isEmpty || arrLength == 0">
+			<h1>Tis Empty :(</h1>
+		</div>
+
+		<!-- insert V for here -->
+		<div v-else class="input--item__container">
+			<div v-for="item in filteredArray" :key="item.id">
+				<div class="card">
+					<div class="card__preview--container component edit">
+						<div
+							class="card--image"
+							:style="{ 'background-image': `url('${item.url}')` }"
+						></div>
+
+						<div class="card--border__label">
+							<h1>{{ item.label }}</h1>
+						</div>
+
+						<div class="card__info--container">
+							<div class="card--info tag">
+								<p class="card--p tag">Tag: {{ item.tag }}</p>
+							</div>
+
+							<div class="card--info price">
+								<p class="card--p">Price: ₱{{ item.price }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form__border brick"></div>
 	</div>
 </template>
+
+<style>
+	.filter {
+		margin-left: 30px;
+		margin-bottom: 50px;
+	}
+	.filter__container {
+		margin-top: 10px;
+		display: flex;
+	}
+
+	.search__result {
+		margin: 10px 0px 10px 0px;
+	}
+	.form__border.brick {
+		background-image: url('../assets/stone-header-brown.webp');
+	}
+
+	.card__preview--container.component.edit {
+		margin: 10px 20px;
+	}
+	.empty__filter {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 39vh;
+		opacity: 0.7;
+		user-select: none;
+	}
+</style>
 
 <script setup>
 	import { ref, computed, watch } from 'vue';
@@ -50,7 +95,7 @@
 		return prop.items.length == 0;
 	});
 	const isNone = computed(() => {
-		return userChoice.value == 'None';
+		return userChoice.value == 'None' || userChoice.value == '';
 	});
 	const filteredArray = ref([]);
 	const arrLength = computed(() => {

@@ -234,6 +234,8 @@
 		text-decoration: underline;
 	}
 	.form--select {
+		color: #2f1812;
+		border-radius: 10px;
 		width: 170px;
 		height: 40px;
 
@@ -256,7 +258,7 @@
 		font-family: 'Domine', serif;
 		font-weight: bolder;
 		color: #391d15d4;
-		border-radius: 0px;
+		border-radius: 10px;
 		border: solid 3px#391d15d4;
 		background-image: url('../assets/paper-background-image.webp');
 	}
@@ -274,11 +276,13 @@
 		display: inline-block;
 		width: 87px;
 		height: 30px;
+		border-radius: 10px;
 	}
 
 	button.btn:disabled + .btn__overlay {
 		transition: background-color 200ms ease-in-out;
 		background-color: #391d15d4;
+		border-radius: 10px;
 	}
 
 	/* card item */

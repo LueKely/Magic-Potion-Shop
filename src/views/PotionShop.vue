@@ -92,8 +92,9 @@
 		<div v-if="itemArray.length == 0">Empty :(</div>
 		<!-- wrapper 3 -->
 		<div class="input--item__wrapper" v-else>
-			<div class="form__border brick"></div>
-			<h1>Delete/View</h1>
+			<div class="form__border woodbrown"></div>
+			<div class="title__margin"><h1>Delete/Edit</h1></div>
+
 			<div class="input--item__container">
 				<InputItems
 					v-for="(items, index) in itemArray"
@@ -104,7 +105,7 @@
 					@index-item="deleteItem"
 				></InputItems>
 			</div>
-			<div class="form__border brick"></div>
+			<div class="form__border woodbrown"></div>
 		</div>
 	</div>
 
@@ -113,8 +114,11 @@
 	</div>
 </template>
 
-<style scoped>
-	.form__border.brick {
+<style>
+	.title__margin {
+		margin-left: 20px;
+	}
+	.form__border.woodbrown {
 		background-image: url('../assets/wood-header-textured.webp');
 	}
 	.input--item__container {
@@ -124,7 +128,7 @@
 		align-items: center;
 		justify-content: flex-start;
 		flex-wrap: wrap;
-		width: 90%;
+		width: 88%;
 		height: auto;
 	}
 	.input--item__wrapper {
