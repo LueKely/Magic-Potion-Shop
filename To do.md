@@ -2,6 +2,10 @@
 
 ## CURRENT
 
+lagay notif slot component
+
+done
+
 Turne d that button G R E E N
 
 ~done~

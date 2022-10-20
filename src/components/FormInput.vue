@@ -48,14 +48,19 @@
 					<div class="form--item">
 						<h1 class="form--label">Tag:</h1>
 						<select class="form--select" v-model="item.options.tag">
-							<option disabled value="">Please select one</option>
+							<option disabled value="">Select a Tag</option>
 							<option>Dish Washing</option>
 							<option>Laundry</option>
 							<option>Misc</option>
 						</select>
 					</div>
 					<!-- submit button -->
-					<div class="form__button--container">
+					<button class="btn submit" @click="sendItem" :disabled="checkForm">
+						<div class="btn__overlay submitF"></div>
+						Submit
+					</button>
+
+					<!-- <div class="form__button--container">
 						<button
 							class="btn form__button"
 							@click="sendItem"
@@ -65,7 +70,7 @@
 						</button>
 
 						<span v-show="checkForm" class="btn__overlay"></span>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
@@ -234,33 +239,34 @@
 		text-decoration: underline;
 	}
 	.form--select {
-		color: #2f1812;
+		font-family: 'Domine', serif;
+		font-weight: bolder;
+		font-size: 1.2rem;
+		color: #583b2c;
 		border-radius: 10px;
 		width: 170px;
 		height: 40px;
-
+		text-align: center;
 		background-image: url('../assets/paper-background-image.webp');
 		border: solid 3px #98431fb5;
 
 		padding: 5px;
-
-		font-family: 'Domine', serif;
-		font-weight: bolder;
-		font-size: 1rem;
 	}
 	.form__button--container {
 		overflow: hidden;
 	}
 	.btn {
+		overflow: hidden;
 		transition: scale 200ms ease-in-out;
 		position: relative;
 		font-size: 1.3rem;
 		font-family: 'Domine', serif;
 		font-weight: bolder;
 		color: #391d15d4;
-		border-radius: 10px;
+		border-radius: 20px;
 		border: solid 3px#391d15d4;
 		background-image: url('../assets/paper-background-image.webp');
+		width: 100px;
 	}
 
 	.btn:active {
@@ -271,18 +277,22 @@
 		transition: background-color 100ms ease-in-out;
 		position: absolute;
 		top: 0;
-		left: 0;
+		left: -5%;
 		opacity: 0.5;
 		display: inline-block;
-		width: 87px;
+		width: 110px;
 		height: 30px;
-		border-radius: 10px;
+		border-radius: 30px;
 	}
 
-	button.btn:disabled + .btn__overlay {
+	.btn.submit:disabled:active {
+		scale: 1;
+	}
+
+	.btn.submit:disabled > .btn__overlay.submitF {
 		transition: background-color 200ms ease-in-out;
 		background-color: #391d15d4;
-		border-radius: 10px;
+		border-radius: 20px;
 	}
 
 	/* card item */

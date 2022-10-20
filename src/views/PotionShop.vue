@@ -89,21 +89,26 @@
 	<!-- wrapper 1 -->
 	<div v-show="userChoice == 'delete'">
 		<!-- wrapper 2 -->
-		<div v-if="itemArray.length == 0">Empty :(</div>
+
 		<!-- wrapper 3 -->
-		<div class="input--item__wrapper" v-else>
+		<div class="input--item__wrapper">
 			<div class="form__border woodbrown"></div>
 			<div class="title__margin"><h1>Delete/Edit</h1></div>
 
-			<div class="input--item__container">
-				<InputItems
-					v-for="(items, index) in itemArray"
-					:key="items.id"
-					:item="items"
-					:index="index"
-					@edited-item="editItem"
-					@index-item="deleteItem"
-				></InputItems>
+			<div class="empty__filter delete" v-if="itemArray.length == 0">
+				<h1>Tis Empty :(</h1>
+			</div>
+			<div v-else class="input--item__container">
+				<transition-group name="list">
+					<div v-for="(items, index) in itemArray" :key="items.id">
+						<InputItems
+							:item="items"
+							:index="index"
+							@edited-item="editItem"
+							@index-item="deleteItem"
+						></InputItems>
+					</div>
+				</transition-group>
 			</div>
 			<div class="form__border woodbrown"></div>
 		</div>
@@ -138,5 +143,26 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
+	}
+	.empty__filter.delete {
+		min-height: 60vh;
+	}
+
+	.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+		transition: all 0.5s ease;
+	}
+
+	.list-enter-from,
+	.list-leave-to {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+
+	/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+	.list-leave-active {
+		position: absolute;
 	}
 </style>

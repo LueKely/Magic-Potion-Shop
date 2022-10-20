@@ -130,17 +130,17 @@
 
 	.btn__overlay {
 		position: absolute;
-		width: 100px;
+		width: 110px;
 		height: 40px;
 		z-index: 3;
 
-		top: 0;
-		left: 0;
+		top: -5%;
+		left: -5%;
 	}
 
 	.btn.edit {
 		margin-right: 5px;
-		border-radius: 10px;
+
 		overflow: hidden;
 		position: relative;
 		border-color: #9e6c23;
@@ -161,7 +161,7 @@
 	.btn.delete {
 		margin-left: 5px;
 
-		border-radius: 10px;
+		border-radius: 20px;
 		overflow: hidden;
 		position: relative;
 		border-color: #5e2916;
@@ -198,7 +198,6 @@
 	.btn.submit {
 		margin-left: 5px;
 
-		border-radius: 10px;
 		overflow: hidden;
 		position: relative;
 		border-color: #56551f;

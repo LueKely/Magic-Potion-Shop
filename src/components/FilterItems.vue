@@ -9,7 +9,7 @@
 				<p>Filter: &nbsp;</p>
 
 				<select v-model="userChoice" class="form--select">
-					<option disabled value="">Please select one</option>
+					<option disabled value="">Select a Tag</option>
 					<option>None</option>
 					<option>Dish Washing</option>
 					<option>Laundry</option>
@@ -78,11 +78,16 @@
 		margin: 10px 20px;
 	}
 	.empty__filter {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
 		width: 100%;
 		text-align: center;
-		margin-bottom: 39vh;
+		height: 50vh;
 		opacity: 0.7;
 		user-select: none;
+		padding-top: 10vh;
 	}
 </style>
 
