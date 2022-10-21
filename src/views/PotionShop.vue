@@ -1,12 +1,34 @@
 <script setup>
 	import FormInput from '../components/FormInput.vue';
 	import InputItems from '../components/InputItems.vue';
-	import { ref, onMounted } from 'vue';
+	import { ref, onMounted, computed, watch } from 'vue';
 	import FilterItems from '../components/FilterItems.vue';
 
 	const itemArray = ref([]);
 	const userChoice = ref('create');
 	const isEmpty = ref(localStorage.length == 0);
+	const isArrEmpty = computed(() => {
+		return itemArray.value.length;
+	});
+	const makeEmpty = ref(false);
+
+	watch(isArrEmpty, () => {
+		if (isArrEmpty.value == 0) {
+			setTimeout(() => {
+				makeEmpty.value = true;
+			}, 300);
+		} else {
+			makeEmpty.value = false;
+		}
+	});
+
+	function mountedEmpty() {
+		if (isArrEmpty.value == 0) {
+			makeEmpty.value = true;
+		} else {
+			makeEmpty.value = false;
+		}
+	}
 
 	function giveChoice(word) {
 		userChoice.value = word;
@@ -70,6 +92,7 @@
 
 	onMounted(() => {
 		check();
+		mountedEmpty();
 	});
 </script>
 
@@ -95,21 +118,28 @@
 			<div class="form__border woodbrown"></div>
 			<div class="title__margin"><h1>Delete/Edit</h1></div>
 
-			<div class="empty__filter delete" v-if="itemArray.length == 0">
-				<h1>Tis Empty :(</h1>
+			<div class="input--item__item">
+				<div class="empty__filter delete" v-if="makeEmpty">
+					<h1>Tis Empty :(</h1>
+				</div>
+				<div v-else class="input--item__container">
+					<transition-group name="list">
+						<div
+							v-for="(items, index) in itemArray"
+							:key="items.id"
+							class="input__items--wrapper"
+						>
+							<InputItems
+								:item="items"
+								:index="index"
+								@edited-item="editItem"
+								@index-item="deleteItem"
+							></InputItems>
+						</div>
+					</transition-group>
+				</div>
 			</div>
-			<div v-else class="input--item__container">
-				<transition-group name="list">
-					<div v-for="(items, index) in itemArray" :key="items.id">
-						<InputItems
-							:item="items"
-							:index="index"
-							@edited-item="editItem"
-							@index-item="deleteItem"
-						></InputItems>
-					</div>
-				</transition-group>
-			</div>
+
 			<div class="form__border woodbrown"></div>
 		</div>
 	</div>
@@ -120,6 +150,15 @@
 </template>
 
 <style>
+	.input--item__item {
+		min-height: 60vh;
+		width: auto;
+	}
+
+	.input__items--wrapper {
+		transition: all 100ms ease-in-out;
+	}
+
 	.title__margin {
 		margin-left: 20px;
 	}
@@ -139,6 +178,7 @@
 	.input--item__wrapper {
 		background-image: url('../assets/casual-background-image.webp');
 		width: 100%;
+
 		height: auto;
 		background-position: center;
 		background-repeat: no-repeat;
