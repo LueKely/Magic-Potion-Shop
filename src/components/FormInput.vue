@@ -288,7 +288,9 @@
 	.btn.submit:disabled:active {
 		scale: 1;
 	}
-
+	.btn.submit:disabled:hover {
+		animation: shake 1s forwards;
+	}
 	.btn.submit:disabled > .btn__overlay.submitF {
 		transition: background-color 200ms ease-in-out;
 		background-color: #391d15d4;
@@ -375,5 +377,26 @@
 	}
 	.card--p.tag {
 		font-size: 1.4rem;
+	}
+
+	/* animation */
+	@keyframes shake {
+		0%,
+		100% {
+			transform: translateX(0);
+		}
+		10%,
+		30%,
+		50%,
+		70%,
+		90% {
+			transform: translateX(-10px);
+		}
+		20%,
+		40%,
+		60%,
+		80% {
+			transform: translateX(10px);
+		}
 	}
 </style>

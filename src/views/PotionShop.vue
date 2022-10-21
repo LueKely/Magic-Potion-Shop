@@ -97,9 +97,7 @@
 </script>
 
 <template>
-	<div><h1>Potion Shop Listing And Making</h1></div>
-
-	<div>
+	<div class="selection__container">
 		<button @click="giveChoice('create')">Create</button>
 		<button @click="giveChoice('delete')">Delete/Edit</button>
 		<button @click="giveChoice('view')">View/Sort</button>
@@ -204,5 +202,11 @@
    animations can be calculated correctly. */
 	.list-leave-active {
 		position: absolute;
+	}
+
+	.selection__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
