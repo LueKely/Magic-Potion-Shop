@@ -98,9 +98,15 @@
 
 <template>
 	<div class="selection__container">
-		<button @click="giveChoice('create')">Create</button>
-		<button @click="giveChoice('delete')">Delete/Edit</button>
-		<button @click="giveChoice('view')">View/Sort</button>
+		<button class="selection__item" @click="giveChoice('create')">
+			Create
+		</button>
+		<button class="selection__item" @click="giveChoice('delete')">
+			Delete/Edit
+		</button>
+		<button class="selection__item" @click="giveChoice('view')">
+			View/Sort
+		</button>
 	</div>
 
 	<div v-show="userChoice == 'create'">
@@ -205,8 +211,34 @@
 	}
 
 	.selection__container {
+		width: 100%;
+		padding: 20px;
+		height: 100px;
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+	/* 
+	<div class="selection__container">
+		<button class="selection__item" @click="giveChoice('create')">
+			Create
+		</button>
+		<button class="selection__item" @click="giveChoice('delete')">
+			Delete/Edit
+		</button>
+		<button class="selection__item" @click="giveChoice('view')">
+			View/Sort
+		</button>
+	</div> */
+
+	.selection__item {
+		font-family: 'MedievalSharp', cursive;
+		font-size: 3rem;
+		border-style: none;
+		margin-inline: 10px;
+		padding: 5px 15px;
+		border-radius: 30px;
+		color: #2f1812;
 	}
 </style>
