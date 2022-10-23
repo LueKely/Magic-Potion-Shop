@@ -4,7 +4,7 @@
 
 		<div class="form">
 			<div class="form__create">
-				<div class="form__item--title"><h1>Create</h1></div>
+				<div class="form__item--title"><h1>Form</h1></div>
 				<div class="form__item--container">
 					<!-- Label -->
 					<div class="form--item">
@@ -110,11 +110,25 @@
 		</div>
 
 		<div class="form__border"></div>
+
+		<div v-if="modalOpen">
+			<teleport to="#notify">
+				<div class="modalContainer">
+					<NotificationHandler
+						word="Item Added!"
+						is="add"
+					></NotificationHandler>
+				</div>
+			</teleport>
+		</div>
 	</div>
 </template>
 
 <script setup>
 	import { ref, computed } from 'vue';
+	import NotificationHandler from './Notification-Handler.vue';
+
+	const modalOpen = ref(false);
 
 	const checkForm = computed(() => {
 		return (
@@ -138,15 +152,33 @@
 
 	const emit = defineEmits(['item-out']);
 
+	function closeModal() {
+		setTimeout(() => {
+			modalOpen.value = false;
+		}, 3000);
+	}
+
 	function sendItem() {
 		console.log('item emetted');
 
 		emit('item-out', item.value.options);
 		item.value.options = { url: '', tag: '', label: '', price: '' };
+		modalOpen.value = true;
+		closeModal();
 	}
 </script>
 
 <style>
+	.modalContainer {
+		height: 100px;
+		width: 400px;
+		overflow: hidden;
+		animation: pop 3s ease-in-out;
+		z-index: 5;
+		position: absolute;
+		top: 85vh;
+		left: 75vw;
+	}
 	.form {
 		display: flex;
 		align-items: center;
@@ -397,6 +429,21 @@
 		60%,
 		80% {
 			transform: translateX(10px);
+		}
+	}
+	@keyframes pop {
+		0% {
+			transform: translateX(600px);
+		}
+		15%,
+		50%,
+		60%,
+		90% {
+			transform: translateX(0px);
+		}
+
+		100% {
+			transform: translateX(600px);
 		}
 	}
 </style>

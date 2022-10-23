@@ -1,3 +1,52 @@
+<script setup>
+	import { ref, computed } from 'vue';
+
+	const isEdit = ref(false);
+	const prop = defineProps({ item: Object, index: Number });
+	const emit = defineEmits([
+		'edited-item',
+		'index-item',
+		'modalModal',
+		'modalType',
+	]);
+	const copyItem = ref({ ...prop.item });
+	const reg = ref(/[a-zA-Z]/g);
+
+	const checkForm = computed(() => {
+		return (
+			copyItem.value.url == '' ||
+			copyItem.value.tag == '' ||
+			copyItem.value.label == '' ||
+			copyItem.value.price == '' ||
+			reg.value.test(copyItem.value.price)
+		);
+	});
+
+	const index = ref(prop.index);
+
+	function emitEdit() {
+		emit('edited-item', { emitedItem: copyItem.value, index: index.value });
+		emit('modalModal', true);
+		emit('modalType', 'edited');
+		isEdit.value = false;
+	}
+
+	function deleteItem() {
+		emit('index-item', index.value);
+		emit('modalModal', true);
+		emit('modalType', 'del');
+	}
+
+	function makeTrue() {
+		isEdit.value = true;
+	}
+
+	function makeFalse() {
+		copyItem.value = { ...prop.item };
+		isEdit.value = false;
+	}
+</script>
+
 <template>
 	<!-- container -->
 	<div class="card">
@@ -243,43 +292,3 @@
 		justify-content: center;
 	}
 </style>
-
-<script setup>
-	import { ref, computed } from 'vue';
-	const isEdit = ref(false);
-	const prop = defineProps({ item: Object, index: Number });
-	const emit = defineEmits(['edited-item', 'index-item']);
-	const copyItem = ref({ ...prop.item });
-	const reg = ref(/[a-zA-Z]/g);
-
-	const checkForm = computed(() => {
-		return (
-			copyItem.value.url == '' ||
-			copyItem.value.tag == '' ||
-			copyItem.value.label == '' ||
-			copyItem.value.price == '' ||
-			reg.value.test(copyItem.value.price)
-		);
-	});
-
-	const index = ref(prop.index);
-
-	function emitEdit() {
-		emit('edited-item', { emitedItem: copyItem.value, index: index.value });
-
-		isEdit.value = false;
-	}
-
-	function deleteItem() {
-		emit('index-item', index.value);
-	}
-
-	function makeTrue() {
-		isEdit.value = true;
-	}
-
-	function makeFalse() {
-		copyItem.value = { ...prop.item };
-		isEdit.value = false;
-	}
-</script>

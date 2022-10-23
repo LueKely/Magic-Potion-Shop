@@ -1,4 +1,5 @@
 <script setup>
+	import NotificationHandler from '../components/Notification-Handler.vue';
 	import FormInput from '../components/FormInput.vue';
 	import InputItems from '../components/InputItems.vue';
 	import { ref, onMounted, computed, watch } from 'vue';
@@ -11,7 +12,8 @@
 		return itemArray.value.length;
 	});
 	const makeEmpty = ref(false);
-
+	const modalOpen = ref(false);
+	const modalIs = ref('');
 	watch(isArrEmpty, () => {
 		if (isArrEmpty.value == 0) {
 			setTimeout(() => {
@@ -89,7 +91,15 @@
 		rewrite();
 		console.table(localStorage);
 	}
-
+	function openModal(e) {
+		modalOpen.value = e;
+		setTimeout(() => {
+			modalOpen.value = false;
+		}, 3000);
+	}
+	function nameModal(e) {
+		modalIs.value = e;
+	}
 	onMounted(() => {
 		check();
 		mountedEmpty();
@@ -98,15 +108,21 @@
 
 <template>
 	<div class="selection__container">
-		<button class="selection__item" @click="giveChoice('create')">
-			Create
-		</button>
-		<button class="selection__item" @click="giveChoice('delete')">
-			Delete/Edit
-		</button>
-		<button class="selection__item" @click="giveChoice('view')">
-			View/Sort
-		</button>
+		<div class="selection__item--container first">
+			<button class="selection__item" @click="giveChoice('create')">
+				Create
+			</button>
+		</div>
+		<div class="selection__item--container middle">
+			<button class="selection__item" @click="giveChoice('delete')">
+				Delete/Edit
+			</button>
+		</div>
+		<div class="selection__item--container last">
+			<button class="selection__item" @click="giveChoice('view')">
+				View/Sort
+			</button>
+		</div>
 	</div>
 
 	<div v-show="userChoice == 'create'">
@@ -138,6 +154,8 @@
 								:index="index"
 								@edited-item="editItem"
 								@index-item="deleteItem"
+								@modalModal="openModal"
+								@modalType="nameModal"
 							></InputItems>
 						</div>
 					</transition-group>
@@ -150,6 +168,23 @@
 
 	<div v-show="userChoice == 'view'">
 		<FilterItems :items="itemArray"></FilterItems>
+	</div>
+
+	<div v-if="modalOpen">
+		<teleport to="#notify">
+			<div class="modalContainer">
+				<NotificationHandler
+					v-if="modalIs == 'edited'"
+					word="Item Edited"
+					:is="modalIs"
+				></NotificationHandler>
+				<NotificationHandler
+					v-else-if="modalIs == 'del'"
+					word="Item Deleted"
+					:is="modalIs"
+				></NotificationHandler>
+			</div>
+		</teleport>
 	</div>
 </template>
 
@@ -211,6 +246,7 @@
 	}
 
 	.selection__container {
+		color: #2f1812;
 		width: 100%;
 		padding: 20px;
 		height: 100px;
@@ -233,12 +269,117 @@
 	</div> */
 
 	.selection__item {
+		margin: auto;
+		transition: background-color 200ms ease-in-out;
 		font-family: 'MedievalSharp', cursive;
 		font-size: 3rem;
 		border-style: none;
-		margin-inline: 10px;
+
 		padding: 5px 15px;
 		border-radius: 30px;
 		color: #2f1812;
+		background-color: rgba(255, 0, 0, 0);
+	}
+
+	.selection__item:hover {
+		transition: background-color 200ms ease-in-out;
+		background-color: #9a7d5b75;
+	}
+	.selection__item--container {
+		display: flex;
+		align-items: center;
+		width: 270px;
+		height: 70px;
+	}
+
+	.selection__item--container.middle::before {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #9a7d5b00;
+		left: -2%;
+		top: 0;
+		border-radius: 5px;
+	}
+	.selection__item--container.middle::after {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #9a7d5b00;
+		left: 100%;
+		top: 0;
+		border-radius: 5px;
+	}
+	.selection__item--container.middle:hover::before {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #2f1812d7;
+		left: -2%;
+		top: 0;
+		border-radius: 5px;
+	}
+	.selection__item--container.middle:hover::after {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #2f1812d7;
+		left: 100%;
+		top: 0;
+		border-radius: 5px;
+	}
+
+	.selection__item--container.first::after {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #9a7d5b00;
+		left: 98%;
+		top: 0;
+		border-radius: 5px;
+	}
+	.selection__item--container.first:hover::after {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #2f1812d7;
+		left: 98%;
+		top: 0;
+		border-radius: 5px;
+	}
+
+	.selection__item--container.last::before {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #9a7d5b00;
+		left: 0%;
+		top: 0;
+		border-radius: 5px;
+	}
+	.selection__item--container.last:hover::before {
+		transition: background-color 400ms ease-in-out;
+		position: absolute;
+		content: '';
+		width: 2px;
+		height: 65px;
+		background-color: #2f1812d7;
+		left: 0%;
+		top: 0;
+		border-radius: 5px;
 	}
 </style>
