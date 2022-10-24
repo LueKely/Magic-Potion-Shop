@@ -202,6 +202,7 @@
 		margin-left: 20px;
 	}
 	.form__border.woodbrown {
+		z-index: 5;
 		background-image: url('../assets/wood-header-textured.webp');
 	}
 	.input--item__container {
@@ -255,18 +256,6 @@
 		align-items: center;
 		justify-content: center;
 	}
-	/* 
-	<div class="selection__container">
-		<button class="selection__item" @click="giveChoice('create')">
-			Create
-		</button>
-		<button class="selection__item" @click="giveChoice('delete')">
-			Delete/Edit
-		</button>
-		<button class="selection__item" @click="giveChoice('view')">
-			View/Sort
-		</button>
-	</div> */
 
 	.selection__item {
 		margin: auto;
