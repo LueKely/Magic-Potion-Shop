@@ -1,0 +1,27 @@
+<svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<style xmlns="http://www.w3.org/2000/svg" type="text/css">
+	.st0{fill:#F7F7F7;}
+	.st1{clip-path:url(#SVGID_2_);fill:#0E538C;}
+	.st2{clip-path:url(#SVGID_2_);fill:#0b4870;}
+	.st3{fill:#8F5F56;}
+	.st4{fill:#D3D3D3;}
+	.st5{fill:#0b4870;}
+	.st6{fill:#73514F;}
+</style>
+<path xmlns="http://www.w3.org/2000/svg" class="st0" d="M357.22,500H142.9c-7.5,0-13.17-6.98-11.83-14.56l55.75-316.02c0.13-0.73,0.19-1.46,0.19-2.2V48.95  c0-6.82,5.38-12.35,12.02-12.35h102.05c6.64,0,12.02,5.53,12.02,12.35v118.26c0,0.74,0.06,1.48,0.19,2.2l55.75,316.02  C370.39,493.02,364.72,500,357.22,500z"/>
+<g xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<path id="SVGID_1_" d="M343.89,487.1H156.22c-6.57,0-11.53-6.63-10.36-13.84l48.82-300.49c0.11-0.69,0.17-1.39,0.17-2.09V58.23    c0-6.49,4.71-11.75,10.53-11.75h89.36c5.82,0,10.53,5.26,10.53,11.75v112.45c0,0.7,0.06,1.4,0.17,2.09l48.82,300.49    C355.43,480.47,350.46,487.1,343.89,487.1z"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;"/>
+	</clipPath>
+	<path class="st1" d="M189.07,117.7c0,0,26.17,7,59.8,3.59s66.6-2.16,66.6-2.16l51.23,362.66l-12.1,12.79h-213.4L189.07,117.7z"/>
+	<path class="st2" d="M369.25,377.27c0,0-55.33,29.58-119.19,29.58s-119.19-29.58-119.19-29.58v117.3h238.38V377.27z"/>
+</g>
+<path xmlns="http://www.w3.org/2000/svg" class="st3" d="M305.27,37.45H194.85V6.9c0-3.81,3.09-6.9,6.9-6.9h96.61c3.81,0,6.9,3.09,6.9,6.9V37.45z"/>
+<path xmlns="http://www.w3.org/2000/svg" class="st0" d="M313.11,63.84H187.01l-8.33-19.7c0-4.16,3.37-7.54,7.54-7.54H313.9c4.16,0,7.54,3.37,7.54,7.54L313.11,63.84z"/>
+<path xmlns="http://www.w3.org/2000/svg" class="st4" d="M313.11,67.81H187.01v-3.97l-3.36-7.94c0,0,29.08,5.96,66.41,5.96s66.41-5.96,66.41-5.96l-3.52,7.94  L313.11,67.81z"/>
+<path xmlns="http://www.w3.org/2000/svg" class="st5" d="M195.5,119.13h109.77c0,0-21.43,12.7-54.88,12.7S195.5,119.13,195.5,119.13z"/>
+<rect xmlns="http://www.w3.org/2000/svg" x="194.85" y="30.64" class="st6" width="110.42" height="6.81"/>
+</svg>
